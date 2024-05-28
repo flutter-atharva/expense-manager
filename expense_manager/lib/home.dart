@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:expense_manager/categories_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,9 +14,142 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   void showBottomSheet() {
     showModalBottomSheet(
+        isDismissible: true,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        )),
         context: context,
+        isScrollControlled: true,
         builder: (context) {
-          return TextField();
+          return Padding(
+            padding: EdgeInsets.only(top: 40, left: 20, right: 20, bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Date",
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 15),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 45,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text("Amount", style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 15)),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 45,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text("Category", style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 15)),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 45,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text("Description", style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 15)),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 45,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Container(
+                  height: 40,
+                  width: 120,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(offset: Offset(1, 2), blurRadius: 4, spreadRadius: 0, color: Color.fromRGBO(0, 0, 0, 0.2))
+                    ],
+                    color: Color.fromRGBO(14, 161, 125, 1),
+                    borderRadius: BorderRadius.circular(70),
+                  ),
+                  child: Text(
+                    "Add",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500, color: Colors.white),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                )
+              ],
+            ),
+          );
         });
   }
 
@@ -28,7 +164,14 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search_outlined, color: Color.fromRGBO(33, 33, 33, 1)))
         ],
-        leading: IconButton(icon: Icon(Icons.menu_outlined), onPressed: () {}, color: Color.fromRGBO(33, 33, 33, 1)),
+        leading: Builder(builder: (context) {
+          return IconButton(
+              icon: Icon(Icons.menu_outlined),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              color: Color.fromRGBO(33, 33, 33, 1));
+        }),
         backgroundColor: Color.fromRGBO(255, 255, 255, 1),
         elevation: 0,
       ),
@@ -335,6 +478,158 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 30,
             )
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 19),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Expense Manager",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 22),
+                  ),
+                  Text("Saves all your Transactions", style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 13))
+                ],
+              ),
+            ),
+            Container(
+              height: 45,
+              width: 200,
+              decoration: BoxDecoration(color: Color.fromRGBO(14, 161, 125, 0.15), borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20))),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Image.asset(
+                    "assets/images/transaction.png",
+                    height: 18,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    "Transaction",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w400, color: Color.fromRGBO(14, 161, 125, 1)),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 45,
+              width: 200,
+              decoration: BoxDecoration(color: Color.fromRGBO(14, 161, 125, 0.15), borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20))),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Image.asset(
+                    "assets/images/graph.png",
+                    height: 18,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    "Graph",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w400, color: Color.fromRGBO(14, 161, 125, 1)),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesPage()));
+              },
+              child: Container(
+                height: 45,
+                width: 200,
+                decoration: BoxDecoration(color: Color.fromRGBO(14, 161, 125, 0.15), borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20))),
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Image.asset(
+                      "assets/images/category.png",
+                      height: 18,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "Category",
+                      style: GoogleFonts.poppins(fontWeight: FontWeight.w400, color: Color.fromRGBO(14, 161, 125, 1)),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 45,
+              width: 200,
+              decoration: BoxDecoration(color: Color.fromRGBO(14, 161, 125, 0.15), borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20))),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Image.asset(
+                    "assets/images/trash.png",
+                    height: 18,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    "Trash",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w400, color: Color.fromRGBO(14, 161, 125, 1)),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              height: 45,
+              width: 200,
+              decoration: BoxDecoration(color: Color.fromRGBO(14, 161, 125, 0.15), borderRadius: BorderRadius.only(topRight: Radius.circular(20), bottomRight: Radius.circular(20))),
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Image.asset(
+                    "assets/images/aboutUs.png",
+                    height: 18,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    "About Us",
+                    style: GoogleFonts.poppins(fontWeight: FontWeight.w400, color: Color.fromRGBO(14, 161, 125, 1)),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
