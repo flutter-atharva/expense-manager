@@ -1,160 +1,16 @@
-import 'dart:math';
-
 import 'package:expense_manager/categories_page.dart';
 import 'package:expense_manager/graphs.dart';
-import 'package:expense_manager/trash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class TrashPage extends StatefulWidget {
+  const TrashPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<TrashPage> createState() => _TrashPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  void showBottomSheet() {
-    showModalBottomSheet(
-        isDismissible: true,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        )),
-        context: context,
-        isScrollControlled: true,
-        builder: (context) {
-          return Padding(
-            padding: EdgeInsets.only(top: 40, left: 20, right: 20, bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Date",
-                      style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 15),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    SizedBox(
-                      height: 45,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text("Amount", style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 15)),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    SizedBox(
-                      height: 45,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text("Category", style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 15)),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    SizedBox(
-                      height: 45,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text("Description", style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 15)),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    SizedBox(
-                      height: 45,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 40,
-                  width: 120,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(offset: Offset(1, 2), blurRadius: 4, spreadRadius: 0, color: Color.fromRGBO(0, 0, 0, 0.2))
-                    ],
-                    color: Color.fromRGBO(14, 161, 125, 1),
-                    borderRadius: BorderRadius.circular(70),
-                  ),
-                  child: Text(
-                    "Add",
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500, color: Colors.white),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                )
-              ],
-            ),
-          );
-        });
-  }
-
+class _TrashPageState extends State<TrashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -193,8 +49,8 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       child: Image.asset(
-                        "assets/images/medicines.png",
-                        height: 50,
+                        "assets/images/trash_subtract.png",
+                        height: 30,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -225,15 +81,11 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Image.asset(
-                              "assets/images/subtract.png",
-                              height: 20,
-                              fit: BoxFit.contain,
-                            ),
+                            
                             SizedBox(
                               width: 5,
                             ),
-                            Text("500", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w400))
+                            Text("500", style: GoogleFonts.poppins(fontSize: 17, fontWeight: FontWeight.w400))
                           ],
                         ),
                       ),
@@ -258,8 +110,8 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       child: Image.asset(
-                        "assets/images/food.png",
-                        height: 50,
+                        "assets/images/trash_subtract.png",
+                        height: 30,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -290,15 +142,11 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Image.asset(
-                              "assets/images/subtract.png",
-                              height: 20,
-                              fit: BoxFit.contain,
-                            ),
+                            
                             SizedBox(
                               width: 5,
                             ),
-                            Text("500", style: GoogleFonts.poppins(fontSize: 15, fontWeight: FontWeight.w400))
+                            Text("500", style: GoogleFonts.poppins(fontSize: 17, fontWeight: FontWeight.w400))
                           ],
                         ),
                       ),
@@ -323,8 +171,8 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       child: Image.asset(
-                        "assets/images/shopping.png",
-                        height: 50,
+                        "assets/images/trash_subtract.png",
+                        height: 30,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -355,11 +203,7 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Image.asset(
-                              "assets/images/subtract.png",
-                              height: 20,
-                              fit: BoxFit.contain,
-                            ),
+                            
                             SizedBox(
                               width: 5,
                             ),
@@ -388,8 +232,8 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Container(
                       child: Image.asset(
-                        "assets/images/fuel.png",
-                        height: 50,
+                        "assets/images/trash_subtract.png",
+                        height: 30,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -420,11 +264,7 @@ class _HomePageState extends State<HomePage> {
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Image.asset(
-                              "assets/images/subtract.png",
-                              height: 20,
-                              fit: BoxFit.contain,
-                            ),
+                            
                             SizedBox(
                               width: 5,
                             ),
@@ -445,38 +285,7 @@ class _HomePageState extends State<HomePage> {
               color: Color.fromRGBO(206, 206, 206, 1),
             ),
             Spacer(),
-            Container(
-              width: 190,
-              height: 50,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(70), boxShadow: [
-                BoxShadow(offset: Offset(0, 4), blurRadius: 4, spreadRadius: 0, color: Color.fromRGBO(0, 0, 0, 0.25))
-              ]),
-              child: ElevatedButton(
-                onPressed: () {
-                  showBottomSheet();
-                },
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.add_circle_rounded,
-                      color: Color.fromRGBO(14, 161, 125, 1),
-                      size: 36,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "Add Transaction",
-                      style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color: Color.fromRGBO(37, 37, 37, 2)),
-                    )
-                  ],
-                ),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(70)),
-                  backgroundColor: Color.fromRGBO(255, 255, 255, 1),
-                ),
-              ),
-            ),
+            
             SizedBox(
               height: 30,
             )

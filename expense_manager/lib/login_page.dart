@@ -1,3 +1,4 @@
+import 'package:expense_manager/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -41,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
                     key: _formKey,
                     child: Column(
                       children: [
-                       
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15),
                           child: Container(
@@ -88,7 +88,6 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        
                       ],
                     )),
                 Padding(
@@ -98,10 +97,12 @@ class _LoginPageState extends State<LoginPage> {
                       width: double.infinity,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                        },
                         style: ElevatedButton.styleFrom(backgroundColor: const Color.fromRGBO(14, 161, 125, 1), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))),
                         child: Text(
-                          "Sign Up",
+                          "Sign In",
                           style: GoogleFonts.poppins(fontSize: 17, fontWeight: FontWeight.w500),
                         ),
                       )),
